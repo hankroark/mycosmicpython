@@ -18,6 +18,11 @@ class MyTestCase(unittest.TestCase):
         batch.allocate(line)
         self.assertEqual(batch.available_quantity, 18)
 
+    def test_does_not_allocate_if_line_bigger_than_batch(self):
+        small_batch, large_line = make_batch_and_line("ELEGANT-LAMP", 2, 20)
+        small_batch.allocate(large_line)
+        self.assertEqual(small_batch.available_quantity, 2)
+
     def test_can_allocate_if_available_greater_than_required(self):
         large_batch, small_line = make_batch_and_line("ELEGANT-LAMP", 20, 2)
         self.assertTrue(large_batch.can_allocate(small_line))
