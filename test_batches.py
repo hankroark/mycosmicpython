@@ -52,6 +52,12 @@ class MyTestCase(unittest.TestCase):
         batch.deallocate(line)
         self.assertEqual(2, batch.available_quantity)
 
+    def test_allocation_is_idempotent(self):
+        batch, line = make_batch_and_line("ANGULAR-DESK", 20, 2)
+        batch.allocate(line)
+        batch.allocate(line)
+        self.assertEqual(18, batch.available_quantity)
+
 
 if __name__ == '__main__':
     unittest.main()
