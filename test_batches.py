@@ -10,7 +10,7 @@ def make_batch_and_line(sku, batch_qty, line_qty):
     )
 
 
-class MyTestCase(unittest.TestCase):
+class TestBatchesAndOrderLines(unittest.TestCase):
 
     def test_allocating_to_a_batch_reduces_the_available_quantity(self):
         batch = Batch("batch-001", "SMALL-TABLE", qty=20, eta=date.today())
